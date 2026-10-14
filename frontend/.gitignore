@@ -22,3 +22,20 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Uploaded visitor photos
+backend/uploads/
+
+# Backend dependencies
+backend/node_modules/
+
+# Frontend dependencies
+frontend/node_modules/
+
+# Build output
+frontend/dist/
+backend/dist/

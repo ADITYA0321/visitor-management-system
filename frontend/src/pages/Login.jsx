@@ -13,9 +13,9 @@ function Login() {
   const navigate = useNavigate();
   const { setUser } = useAuth();
 
-  const handleSubmit = async (e) => {
+ const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+    setError(""); // Clear previous errors
 
     try {
       const response = await axios.post("/api/user/login", {
@@ -26,8 +26,11 @@ function Login() {
       localStorage.setItem("user", JSON.stringify(response.data));
       setUser(response.data);
       navigate("/dashboard");
-    } catch (error) {
-      setError(error.response?.data?.error || "Something went wrong");
+    } catch (err) {
+      // 🚨 Error text persistent rakho aur log bhi check karo
+      console.error("Login failed:", err);
+      const serverMsg = err.response?.data?.error || "Invalid email or password";
+      setError(serverMsg);
     }
   };
 

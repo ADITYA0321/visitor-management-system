@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../axios";
 
 function AllVisitors() {
   const navigate = useNavigate();
@@ -142,6 +142,7 @@ function AllVisitors() {
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="border-b border-gray-800 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                    <th className="py-3 px-4">Photo</th>
                     <th className="py-3 px-4">Visitor Name</th>
                     <th className="py-3 px-4">Contact</th>
                     <th className="py-3 px-4">Host / Person</th>
@@ -153,6 +154,21 @@ function AllVisitors() {
                 <tbody className="divide-y divide-gray-800/60 text-sm">
                   {filteredVisitors.map((v) => (
                     <tr key={v._id} className="hover:bg-gray-800/40 transition">
+                      {/* Photo Column */}
+                      <td className="py-3.5 px-4">
+                        {v.photo ? (
+                          <img
+                            src={`http://localhost:4000${v.photo}`}
+                            alt={v.name}
+                            className="w-10 h-10 rounded-full object-cover border border-gray-700"
+                          />
+                        ) : (
+                          <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-xs text-gray-500">
+                            N/A
+                          </div>
+                        )}
+                      </td>
+
                       <td className="py-3.5 px-4 font-medium text-white">
                         {v.name}
                         {v.company && (

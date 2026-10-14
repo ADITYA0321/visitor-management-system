@@ -1,49 +1,51 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
-const visitorSchema = new Schema ({
-    name:{
+const visitorSchema = new Schema({
+    name: {
         type: String,
         required: true
     },
-    mobile:{
+    mobile: {
         type: String,
         required: true
     },
-     email:{
+    email: {
         type: String,
         required: true
     },
-     company:{
+    company: {
         type: String,
         required: true
     },
-     purpose:{
+    purpose: {
         type: String,
         required: true
     },
-     host:{
+    host: {
         type: String,
-        
     },
-     visitDate:{
+    visitDate: {
         type: Date,
         required: true
     },
-     status:{
+    status: {
         type: String,
         enum: ['Pending', 'Approved', 'Rejected', 'Checked In', 'Checked Out'],
-        required:true,
+        required: true,
         default: 'Pending'
-        
     },
-     createdBy:{
-       type: Schema.Types.ObjectId,
-
+    createdBy: {
+        type: Schema.Types.ObjectId,
         required: true
-        
     },
-})
+    // 📸 Naya photo field yahan add ho gaya:
+    photo: {
+        type: String,
+        required: false,
+        default: ""
+    }
+}, { timestamps: true });
 
-module.exports = mongoose.model('Visitor', visitorSchema)
+module.exports = mongoose.model('Visitor', visitorSchema);

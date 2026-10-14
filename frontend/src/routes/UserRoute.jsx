@@ -1,0 +1,1 @@
+router.patch("/:id/reset-password", requireAuth, resetPassword);

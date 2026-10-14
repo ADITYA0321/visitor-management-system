@@ -13,12 +13,21 @@ const requireAuth = async (req, res, next) => {
     try {
         const decoded = jwt.verify(token, process.env.SECRET)
 
-        // Fetching _id and role directly using decoded.id
-        req.user = await User.findOne({ _id: decoded.id }).select('_id role')
+        const user = await User.findById(decoded.id)
+            .select('_id role tokenVersion')
 
-        if (!req.user) {
+        if (!user) {
             return res.status(401).json({ error: 'User not found' })
         }
+
+        // Check whether the token is still valid
+        if (decoded.tokenVersion !== user.tokenVersion) {
+            return res.status(401).json({
+                error: 'Session expired. Please login again.'
+            })
+        }
+
+        req.user = user
 
         next()
     } catch (error) {

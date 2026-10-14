@@ -1,0 +1,16 @@
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Uploaded visitor photos
+backend/uploads/
+
+# Build files
+frontend/dist/
+backend/dist/
