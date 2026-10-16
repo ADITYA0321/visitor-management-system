@@ -30,6 +30,35 @@ A modern MERN stack Visitor Management System with a dark-themed UI, visitor reg
 - Mongoose
 - JWT Authentication
 
+## Screenshots
+
+### Login
+![Login](screenshots/login.png)
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Visitor Management
+![Visitors](screenshots/visitors.png)
+
+### Add Visitor
+![Add Visitor](screenshots/add-visitor.png)
+
+### Appointments
+![Appointments](screenshots/appointments.png)
+
+### Visitor Passes
+![Visitor Passes](screenshots/passes.png)
+
+### Check-In / Check-Out
+![Check-In](screenshots/check-in.png)
+
+### Reports
+![Reports](screenshots/reports.png)
+
+### User Management
+![User Management](screenshots/users.png)
+
 ## Project Structure
 
 ```text
@@ -49,6 +78,7 @@ visitor-management-system/
 │   │   ├── App.jsx
 │   │   └── main.jsx
 │   └── package.json
+├── screenshots/
 ├── .gitignore
 └── README.md
 ```
@@ -75,9 +105,9 @@ cd backend
 npm install
 ```
 
-Create a `.env` file inside the `backend` directory and configure the required environment variables.
+Create a `.env` file inside the `backend` directory and configure the environment variables required by your backend, including the MongoDB connection string and JWT secret.
 
-Typical variables may include:
+Example:
 
 ```env
 PORT=4000
@@ -85,7 +115,7 @@ MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 ```
 
-Configure any additional environment variables required by your application, including email settings if email notifications are enabled.
+Configure any additional variables required by your application, including email settings if email notifications are enabled.
 
 Start the backend using the script defined in `backend/package.json`.
 
