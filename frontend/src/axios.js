@@ -1,4 +1,5 @@
 import axios from "axios";
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 // 🚨 Global response interceptor for 401 Unauthorized
 axios.interceptors.response.use(
