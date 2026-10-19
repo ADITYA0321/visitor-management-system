@@ -1,12 +1,10 @@
 const dotenv = require('dotenv');
 dotenv.config();  
 const express = require('express');
-
-
-
 const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
+const fs = require('fs'); // 👈 1. Yahan 'fs' module require karein
 
 // Routes Import
 const authRoutes = require('./routes/authRoutes');
@@ -19,14 +17,18 @@ const reportRoutes = require("./routes/reportRoutes");
 
 const app = express();
 
-
-
 // Port Initialization
 const PORT = process.env.PORT || 4000;
 
 // Middlewares
 app.use(cors());
 app.use(express.json());
+
+// 👇 2. Yahan 'uploads' folder automatic create karne ka code dalein
+const uploadDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 // Expose Static Uploads Directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
