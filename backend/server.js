@@ -4,7 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
-const fs = require('fs'); // 👈 1. Yahan 'fs' module require karein
+const fs = require('fs');
 
 // Routes Import
 const authRoutes = require('./routes/authRoutes');
@@ -20,11 +20,16 @@ const app = express();
 // Port Initialization
 const PORT = process.env.PORT || 4000;
 
-// Middlewares
-app.use(cors());
+// Middlewares & CORS Configuration (Sirf ek baar properly configure karein)
+app.use(cors({
+  origin: '*', // Ya aap apna Vercel URL bhi dal sakte hain
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
 
-// 👇 2. Yahan 'uploads' folder automatic create karne ka code dalein
+// Ensure 'uploads' folder exists automatically
 const uploadDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
@@ -41,14 +46,11 @@ app.use('/api/visitor', visitorRoutes);
 app.use("/api/appointment", appointmentRoutes);
 app.use("/api/pass", passRoutes);
 app.use("/api/report", reportRoutes);
+app.use("/api/checklog", checkLogRoutes);
 
 app.get('/', (req, res) => {
   res.send("Home");
 });
-app.use(
-  "/api/checklog",
-  checkLogRoutes
-);
 
 // DB Connection & Server Start
 mongoose.connect(process.env.MONGO_URI)
