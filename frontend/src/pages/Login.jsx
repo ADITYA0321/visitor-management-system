@@ -114,6 +114,16 @@ function Login() {
           </button>
         </form>
       </div>
+            {/* Copyright Footer */}
+      <footer className="absolute bottom-4 left-0 w-full text-center px-4">
+        <p className="text-xs text-gray-500">
+          © 2026 Visitor Pass | Developed by{" "}
+          <span className="text-gray-300 font-medium">
+            Aditya Rangari
+          </span>
+          . All Rights Reserved.
+        </p>
+      </footer>
     </div>
   );
 }
